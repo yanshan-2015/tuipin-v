@@ -60,6 +60,15 @@ module.exports = {
           limit: 10000,
           name: utils.assetsPath('fonts/[name].[hash:7].[ext]')
         }
+      },
+      //added
+      {
+        test: require.resolve('jquery'),
+        loader: 'expose-loader?$expose-loader?jQuery'
+      },
+      {
+        test: require.resolve('tether'),
+        loader: 'expose-loader?Tether'
       }
     ]
   }
