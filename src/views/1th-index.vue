@@ -1,5 +1,8 @@
 <template>
-    <div class="index">{{title}}</div>
+    <div class="index">
+
+    <p>{{title}}</p>
+    </div>
 </template>
 
 <script>
@@ -8,7 +11,8 @@
         components: {},
         data() {
             return {
-              title: 'cli'
+              title: 'cli',
+              name: '小师妹'
             }
         }
     }
@@ -16,7 +20,6 @@
 
 <style lang="less" scoped>
   .index{
-    font-size: 50px;
-    background: url("../assets/logo.png");
+    font-size: 55px;
   }
 </style>
