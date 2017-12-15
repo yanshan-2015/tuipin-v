@@ -24,7 +24,6 @@
 
 <style lang="less" scoped>
   .page2{
-    padding-top: 25px;
     h1{
       text-align: center;
       font-size: 36px;
