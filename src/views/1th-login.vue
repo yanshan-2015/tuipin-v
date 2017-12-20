@@ -1,98 +1,123 @@
 <template>
-    <div class="index">
-      <div class="contain">
-        <h1>推品-儿童</h1>
-        <div class="dialog">
-          <ul>
-            <li><label for="phone">手机号：</label><input type="tel" id="phone" name="phone"></li>
-            <li><label for="password">密码：</label><input type="tel" id="password" name="password"></li>
-          </ul>
-        </div>
-        <div class="button">
-          <p @click="login">登 录</p>
-        </div>
-      </div>
+  <div class="login">
+
+    <div class="logo">
+      <img src="../../static/ip.png" alt="">
     </div>
+    <h1>欢迎使用</h1>
+    <ul>
+      <li>
+        <input type="tel" maxlength="11" placeholder="手机号">
+        <img src="../../static/iconfont-cha.png" alt="">
+      </li>
+      <li>
+        <input type="password" placeholder="密码">
+      </li>
+    </ul>
+
+    <div class="button">
+      <p @click="login">登 录</p>
+    </div>
+
+    <div class="hint">
+      <h2>本应用为慕思儿童专属所有</h2>
+      <h2>暂供内部测试</h2>
+    </div>
+
+  </div>
 </template>
 
 <script>
     export default {
-      name: 'index',
+      name: '',
       components: {},
       data() {
-          return {
-            title: 'cli'
-          }
+          return {}
       },
       methods:{
         login: function () {
-          this.$router.push({path: "page1"})
+          this.$router.push({path: "part1"})
         }
       }
     }
 </script>
 
 <style lang="less" scoped>
-  .index{
+  .login{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
     height: 100%;
-    background-color: #f1f1f1;
-    .contain{
-      width: 100%;
-      height: 100%;
-      background: url("../assets/timg2.jpg")no-repeat;
-      background-size: cover;
-      h1{
-        padding-top: 140px;
-        text-align: center;
-        font-size: 48px;
-        color: coral;
+    background-color: rgb(246,247,251);
+    .logo{
+      margin-top: 160px;
+      img{
+        display: block;
+        margin: 0 auto;
       }
-      .dialog{
-        width: 74%;
-        height: 300px;
-        margin: 180px auto 0;
-        border-radius: 15px;
-        background: rgba(230,230,230,0.6);
-        ul{
-          padding-top: 50px;
-          width:80%;
-          margin: 0 auto;
-          li{
-            height: 100px;
-            line-height: 100px;
-            font-size: 32px;
-            label{
-              display: inline-block;
-              width: 31%;
-              text-align: right;
-              color: coral;
-            }
-            input{
-              width: 66%;
-              height: 50px;
-              padding-left: 3%;
-              border: none;
-              border-radius: 6px;
-              background-color: beige;
-            }
-          }
-        }
-      }
-      .button{
-        position: absolute;
-        bottom: 80px;
-        left: 0;
+    }
+    h1{
+      margin-top: 40px;
+      text-align: center;
+      font-size: 48px;
+      color: rgb(58,68,74);
+    }
+    ul{
+      width: 610px;
+      padding-top: 120px;
+      margin: 0 auto;
+      li{
         width: 100%;
-        p{
-          width: 66%;
+        height: 80px;
+        margin-bottom: 40px;
+        border-bottom: 1px solid rgb(204,204,204);
+        input{
+          display: inline-block;
+          width: 500px;
           height: 80px;
-          margin: 0 auto;
-          line-height: 80px;
-          text-align: center;
-          background-color: coral;
-          border-radius: 15px;
-          font-size: 36px;
+          border: none;
+          font-size: 40px;
+          color: rgb(58,68,74);
+          background: none;
+          vertical-align: middle ;
         }
+        input::-webkit-input-placeholder{
+          color: rgb(151,153,171);
+        }
+        img{
+          display: inline-block;
+          width: 30px;
+          height: 30px;
+          padding: 25px 35px;
+          vertical-align: middle;
+        }
+      }
+    }
+    .button{
+      width: 610px;
+      margin: 0 auto;
+      p{
+        width: 100%;
+        height: 80px;
+        margin: 0 auto;
+        line-height: 80px;
+        text-align: center;
+        background-color: rgba(255,0,115,0.8);
+        border-radius: 8px;
+        font-size: 38px;
+        color: #fff;
+      }
+    }
+    .hint{
+      position: absolute;
+      bottom: 40px;
+      left: 0;
+      width: 100%;
+      h2{
+        text-align: center;
+        font-size: 24px;
+        color: rgb(151,153,171);
       }
     }
   }
