@@ -22,8 +22,12 @@
       </div>
 
       <div class="chart">
-        <div class="left"></div>
-        <div class="right"></div>
+        <div class="left">
+          <IEcharts :option="bar1" :loading="loading" @ready="onReady" @click="onClick"></IEcharts>
+        </div>
+        <div class="right">
+          <IEcharts :option="bar2" :loading="loading" @click="onClick"></IEcharts>
+        </div>
       </div>
 
       <div class="value">
@@ -121,16 +125,55 @@
   </div>
 </template>
 
-<script>
+<script type="text/babel">
+  import IEcharts from 'vue-echarts-v3/src/full.js'
   export default {
     name: '',
-    components: {},
+    components: { IEcharts },
     data() {
-        return {}
+        return {
+          loading: false,
+          bar1: {
+            title: {
+              text: '你的身高：120cm'
+            },
+            tooltip: {},
+            xAxis: {
+              data: ['标准最低', '你的', '标准最高']
+            },
+            yAxis: {},
+            series: [{
+              name: '身高',
+              type: 'bar',
+              data: [110, 120, 154]
+            }]
+          },
+          bar2: {
+            title: {
+              text: '你的体重：45kg'
+            },
+            tooltip: {},
+            xAxis: {
+              data: ['标准最低', '你的', '标准最高']
+            },
+            yAxis: {},
+            series: [{
+              name: '体重',
+              type: 'bar',
+              data: [45, 35, 60]
+            }]
+          }
+        }
     },
     methods:{
+      onReady: function(instance) {
+        console.log('haha');
+      },
       back: function () {
         this.$router.push({ name: 'part1'});
+      },
+      onClick: function (event, instance, echarts) {
+        console.log(event.color);
       }
     }
   }
@@ -205,14 +248,17 @@
       }
       .chart{
         height: 450px;
-        overflow: auto;
         .left,.right{
           float: left;
-          width: 49%;
-          height: 100%;
+          width: 43%;
+          height: 390px;
+          padding: 30px 3%;
           background-color: #fff;
           border-radius: 8px;
           box-shadow: 0 2px 6px rgba(151,153,171,0.1);
+        }
+        .left{
+
         }
         .right{
           margin-left: 2%;
