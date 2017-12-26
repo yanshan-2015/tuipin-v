@@ -54,6 +54,8 @@
       margin-top: 160px;
       img{
         display: block;
+        width: 218px;
+        height: auto;
         margin: 0 auto;
       }
     }
