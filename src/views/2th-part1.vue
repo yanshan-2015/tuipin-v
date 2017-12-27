@@ -19,7 +19,7 @@
         <li>
           <label for="name">姓名</label>
           <div class="name">
-            <input type="text" id="name" placeholder="your name">
+            <input type="text" id="name" placeholder="your name" v-model="name">
           </div>
         </li>
 
@@ -40,7 +40,13 @@
         <li>
           <label>年龄</label>
           <div class="ageBox">
-
+            <swiper :options="swiperOption" ref="mySwiper">
+              <!-- slides -->
+              <swiper-slide>I'm Slide 1</swiper-slide>
+              <swiper-slide>I'm Slide 2</swiper-slide>
+              <swiper-slide>I'm Slide 3</swiper-slide>
+              <swiper-slide>I'm Slide 4</swiper-slide>
+            </swiper>
           </div>
         </li>
       </ul>
@@ -58,15 +64,41 @@
 
 <script>
   import MyHead from '../components/Head.vue'
+  import 'swiper/dist/css/swiper.css'
+  import { swiper, swiperSlide } from 'vue-awesome-swiper'
 
   export default {
     name: '',
-    components: { MyHead},
+    components: { MyHead, swiper, swiperSlide},
     data() {
       return {
+        name: '',
+        sex: '',
+        age: '',
         femaleImg:['../../static/girl.png','../../static/girl2.png'],
-        maleImg: ['../../static/boy.png','../../static/boy2.png']
+        maleImg: ['../../static/boy.png','../../static/boy2.png'],
+        swiperOption: {
+          // some swiper options/callbacks
+          // 所有的参数同 swiper 官方 api 参数
+          // ...
+        }
       }
+    },
+    computed: {
+      swiper() {
+        return this.$refs.mySwiper.swiper
+      }
+    },
+    mounted() {
+      // current swiper instance
+      // 然后你就可以使用当前上下文内的swiper对象去做你想做的事了
+      console.log('this is current swiper instance object', this.swiper)
+      this.swiper.slideTo(3, 1000, false)
+    },
+    updated: function () {
+      localStorage.name = this.name;
+      localStorage.sex = this.sex;
+      localStorage.age = this.age;
     },
     methods:{
       back:function () {

@@ -15,11 +15,11 @@
       </div>
 
       <ul class="info">
-        <li><label for="height">身高</label><div class="bg"><input type="number" id="height" placeholder="你的身高">cm</div></li>
-        <li><label for="weight">体重</label><div class="bg"><input type="number" id="weight" placeholder="你的体重">kg</div></li>
-        <li><label for="jiankuan">肩宽</label><div class="bg"><input type="number" id="jiankuan" placeholder="两肩之间的距离">cm</div></li>
-        <li><label for="touwei">头围</label><div class="bg"><input type="number" id="touwei" placeholder="头直径最大处绕一圈">cm</div></li>
-        <li><label for="jingchang">颈长</label><div class="bg"><input type="number" id="jingchang" placeholder="脖子长度">cm</div></li>
+        <li><label for="height">身高</label><div class="bg"><input v-model="height" type="number" id="height" placeholder="你的身高">cm</div></li>
+        <li><label for="weight">体重</label><div class="bg"><input v-model="weight" type="number" id="weight" placeholder="你的体重">kg</div></li>
+        <li><label for="jiankuan">肩宽</label><div class="bg"><input v-model="jiankuan" type="number" id="jiankuan" placeholder="两肩之间的距离">cm</div></li>
+        <li><label for="touwei">头围</label><div class="bg"><input v-model="touwei" type="number" id="touwei" placeholder="头直径最大处绕一圈">cm</div></li>
+        <li><label for="jingchang">颈长</label><div class="bg"><input v-model="jingchang" type="number" id="jingchang" placeholder="脖子长度">cm</div></li>
       </ul>
 
       <div class="button">
@@ -34,7 +34,20 @@
       name: '',
       components: { MyHead },
       data() {
-          return {}
+          return {
+            height: '',
+            weight: '',
+            jiankuan: '',
+            touwei: '',
+            jingchang: ''
+          }
+      },
+      updated:function () {
+        localStorage.height = this.height;
+        localStorage.weight = this.weight;
+        localStorage.jiankuan = this.jiankuan;
+        localStorage.touwei = this.touwei;
+        localStorage.jingchang = this.jingchang;
       },
       methods:{
         go: function () {
