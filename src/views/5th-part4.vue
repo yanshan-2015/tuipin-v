@@ -2,7 +2,7 @@
   <div class="part4">
     <div class="top">
       <div class="topContain">
-        <h1>测试报告</h1>
+        <h1>智睡小报</h1>
         <div class="word">
           <p>亲爱的 {{userinfo.name}} 小朋友：</p>
           <p>我们都觉得你表现非常棒，作为奖</p>

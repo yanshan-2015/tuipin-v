@@ -27,12 +27,8 @@
           <label>性别</label>
           <div class="choseSexy">
             <ul>
-              <li>
-                <img :src="maleImg[0]" alt="" @click="male">
-              </li>
-              <li>
-                <img :src="femaleImg[0]" alt="" @click="female">
-              </li>
+              <li v-for="(item, index) in sexImg" @click="choseSex(index)"
+                  :class="{circle: index === currentSex}"></li>
             </ul>
           </div>
         </li>
@@ -41,11 +37,9 @@
           <label>年龄</label>
           <div class="ageBox">
             <swiper :options="swiperOption" ref="mySwiper">
-              <!-- slides -->
-              <swiper-slide>I'm Slide 1</swiper-slide>
-              <swiper-slide>I'm Slide 2</swiper-slide>
-              <swiper-slide>I'm Slide 3</swiper-slide>
-              <swiper-slide>I'm Slide 4</swiper-slide>
+              <swiper-slide v-for="(item, index) in ageRange" :key="item.id">
+                <p @click="choseIt(index)" :class="{'active': currentItem === index}">{{item}}</p>
+              </swiper-slide>
             </swiper>
           </div>
         </li>
@@ -75,12 +69,14 @@
         name: '',
         sex: '',
         age: '',
-        femaleImg:['../../static/girl.png','../../static/girl2.png'],
-        maleImg: ['../../static/boy.png','../../static/boy2.png'],
+        currentSex: '',
+        currentItem: '',
+        active: false,
+        ageRange: [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18],
+        sexImg:['../../static/boy2.png', '../../static/girl2.png'],
+        activeImg: ['../../static/boy.png','../../static/girl.png'],
         swiperOption: {
-          // some swiper options/callbacks
-          // 所有的参数同 swiper 官方 api 参数
-          // ...
+          slidesPerView : 7.1,
         }
       }
     },
@@ -93,7 +89,7 @@
       // current swiper instance
       // 然后你就可以使用当前上下文内的swiper对象去做你想做的事了
       console.log('this is current swiper instance object', this.swiper)
-      this.swiper.slideTo(3, 1000, false)
+      this.swiper.slideTo(0, 1000, false)
     },
     updated: function () {
       localStorage.name = this.name;
@@ -106,6 +102,13 @@
       },
       go:function () {
         this.$router.push({ name: 'part2'})
+      },
+      choseSex: function (index) {
+        this.currentSex = index;
+      },
+      choseIt: function (index) {
+        this.currentItem = index;
+        this.age = this.currentItem;
       },
       male:function () {
 
@@ -187,18 +190,46 @@
               overflow: hidden;
               li{
                 float: left;
-                width: 140px;
+                width: 132px;
                 height: 80px;
-                background-color: coral;
                 border-radius: 40px;
                 text-align: center;
+              }
+              li:nth-of-type(1){
+                background: url("../../static/boy2.png")no-repeat center;
+                background-size: auto 60px;
+              }
+              li:nth-of-type(2){
+                background: url("../../static/girl2.png")no-repeat center;
+                background-size: auto 60px;
+              }
+              .circle{
+                border: 2px solid rgb(255,0,115);
               }
             }
           }
           .ageBox{
             width: 500px;
             height: 80px;
+            padding-left: 22px;
             background-color: rgb(240,242,249);
+            .swiper-slide{
+              margin-top: 16px;
+              p{
+                width: 48px;
+                height: 48px;
+                line-height: 48px;
+                text-align: center;
+                border-radius: 24px;
+                background-color: #fff;
+                font-size: 24px;
+                color: rgb(151,153,171);
+              }
+              .active{
+                color: #fff;
+                background-color: rgb(255,0,115);
+              }
+            }
           }
         }
       }
