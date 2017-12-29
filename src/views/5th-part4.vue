@@ -134,6 +134,53 @@
 <script type="text/babel">
   import IEcharts from 'vue-echarts-v3/src/full.js'
   import { BMIFun, valueRanges } from '../js/components/BMI-index-color'
+
+  let PK={
+      PK1:[
+        {module: "PKZ1-005", name: "3D定型枕", format: "没有收录", img:'../../static/IMG_3382.jpg'},
+        {module: "PKZ1-006", name: "竹炭多功能枕", format: "没有收录", img:'../../static/IMG_3382.jpg'},
+        {module: "PKZ1-009", name: "记忆枕", format: "没有收录",img:'../../static/IMG_3382.jpg'}
+        ],
+      PK2:[
+        {module: "PKZ1-007", name: "3D蝶形成长枕", format: "没有收录",img:'../../static/IMG_3382.jpg'},
+        {module: "PKZ1-008", name: "竹炭助眠枕", format: "没有收录",img:'../../static/IMG_3382.jpg'},
+        {module: "PKZ1-010", name: "记忆枕", format: "没有收录",img:'../../static/IMG_3382.jpg'}
+        ],
+      PK3:[
+        {module: "PKZ1-011", name: "温感按摩枕", format: "没有收录",img:'../../static/IMG_3382.jpg'},
+        {module: "PKZ1-012", name: "竹炭按摩枕", format: "没有收录",img:'../../static/IMG_3382.jpg'}
+        ],
+      PK4:[
+        {module: "PKZ1-013", name: "记忆枕", format: "没有收录",img:'../../static/IMG_3382.jpg'},
+        {module: "PKZ1-015", name: "蝶形护颈枕", format: "没有收录",img:'../../static/IMG_3382.jpg'}
+        ],
+      PK5:[
+        {module: "PKZ1-016", name: "3D可调节枕", format: "没有收录",img:'../../static/IMG_3382.jpg'},
+        {module: "PKZ1-017", name: "竹炭助眠枕", format: "没有收录",img:'../../static/IMG_3382.jpg'}
+        ],
+    };
+  let MK={
+      MK1:[
+        {module: "MKB1-021A", name: "小独立筒弹簧床垫", format: "12cm 小独立筒",img:'../../static/IMG_2305.jpg'},
+        {module: "MKB1-007", name: "独立筒弹簧床垫", format: "18cm 双层独立筒",img:'../../static/IMG_2305.jpg'},
+        {module: "MKB1-003A", name: "3D棉床垫", format: "17cm 全3D",img:'../../static/IMG_2305.jpg'}
+        ],
+      MK2:[
+        {module: "MKA1-052A", name: "独立筒弹簧床垫", format: "18cm 独立筒",img:'../../static/IMG_2305.jpg'},
+        {module: "MKB1-063", name: "维密天使", format: "18cm 三区五段",img:'../../static/IMG_2305.jpg'},
+        {module: "MKB1-007", name: "独立筒弹簧床垫", format: "18cm 双层独立筒",img:'../../static/IMG_2305.jpg'}
+        ],
+      MK3:[
+        {module: "MKC1-059", name: "五段式独立筒弹簧床垫", format: "21cm 五段式独立筒",img:'../../static/IMG_2305.jpg'},
+        {module: "MKC1-061", name: "蓝精灵", format: "17cm 三区五段",img:'../../static/IMG_2305.jpg'},
+        {module: "MKB1-006B", name: "迷你独立筒弹簧床垫", format: "22cm 迷你独立筒",img:'../../static/IMG_2305.jpg'}
+        ],
+      MK4:[
+        {module: "MKA1-011", name: "标准弹簧床垫", format: "16cm 整网弹簧",img:'../../static/IMG_2305.jpg'},
+        {module: "MKC1-062", name: "水立方", format: "16cm 三区五段",img:'../../static/IMG_2305.jpg'},
+        {module: "MKC1-060", name: "五段式独立筒弹簧床垫", format: "20cm 五段式独立筒",img:'../../static/IMG_2305.jpg'}
+        ]
+    };
   export default {
     name: '',
     components: { IEcharts },
@@ -226,7 +273,9 @@
               height: '120',
               top: '30'
             }
-          }
+          },
+          mattress: '',
+          pillow:''
         }
     },
     methods:{
@@ -265,6 +314,9 @@
         this.userinfo.BMI = val;
         //游标值:
         this.stable.left = valueRanges(val)+'%';
+
+        //年龄判断
+        console.log(PK);
       })
     }
   }

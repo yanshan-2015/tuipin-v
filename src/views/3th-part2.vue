@@ -20,6 +20,7 @@
         <li><label for="jiankuan">肩宽</label><div class="bg"><input v-model="jiankuan" type="number" id="jiankuan" placeholder="两肩之间的距离">cm</div></li>
         <li><label for="touwei">头围</label><div class="bg"><input v-model="touwei" type="number" id="touwei" placeholder="头直径最大处绕一圈">cm</div></li>
         <li><label for="jingchang">颈长</label><div class="bg"><input v-model="jingchang" type="number" id="jingchang" placeholder="脖子长度">cm</div></li>
+        <li><label for="jingkuan">颈宽</label><div class="bg"><input v-model="jingkuan" type="number" id="jingkuan" placeholder="脖子长度">cm</div></li>
       </ul>
 
       <div class="button">
@@ -39,7 +40,8 @@
             weight: '',
             jiankuan: '',
             touwei: '',
-            jingchang: ''
+            jingchang: '',
+            jingkuan: ''
           }
       },
       updated:function () {
@@ -48,6 +50,7 @@
         localStorage.jiankuan = this.jiankuan;
         localStorage.touwei = this.touwei;
         localStorage.jingchang = this.jingchang;
+        localStorage.jingkuan = this.jingkuan;
       },
       methods:{
         go: function () {
