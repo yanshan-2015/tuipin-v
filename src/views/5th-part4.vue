@@ -58,28 +58,13 @@
         </div>
         <div class="product">
           <ul>
-            <li>
-              <img src="../../static/IMG_2305.jpg" alt="">
+            <li v-for="item in mattress">
+              <img :src="item.img" alt="">
               <div class="describe">
-                <h1>维密天使</h1>
-                <h2>MKB1-063</h2>
-                <p>规格：120*200*30</p>
+                <h1>{{ item.name }}</h1>
+                <h2>{{ item.module }}</h2>
+                <p>{{ item.format }}</p>
               </div>
-            </li>
-            <li>
-              <img src="../../static/IMG_2305.jpg" alt="">
-              <div class="describe">
-                <h1>维密天使</h1>
-                <h2>MKB1-063</h2>
-                <p>规格：120*200*20</p>
-              </div>
-            </li>
-            <li>
-              <img src="../../static/IMG_2305.jpg" alt="">
-              <div class="describe">
-                <h1>维密天使</h1>
-                <h2>MKB1-063</h2>
-                <p>规格：120*200*10</p></div>
             </li>
           </ul>
         </div>
@@ -98,26 +83,13 @@
         </div>
         <div class="product">
           <ul>
-            <li>
-              <img src="../../static/IMG_3382-33.jpg" alt="">
+            <li v-for="item in pillow">
+              <img :src="item.img" alt="">
               <div class="describe">
-                <h1>维密天使</h1>
-                <h2>MKB1-063</h2>
-                <p>规格：120*200*10</p></div>
-            </li>
-            <li>
-              <img src="../../static/IMG_3382-33.jpg" alt="">
-              <div class="describe">
-                <h1>维密天使</h1>
-                <h2>MKB1-063</h2>
-                <p>规格：120*200*10</p></div>
-            </li>
-            <li>
-              <img src="../../static/IMG_3382-33.jpg" alt="">
-              <div class="describe">
-                <h1>维密天使</h1>
-                <h2>MKB1-063</h2>
-                <p>规格：120*200*10</p></div>
+                <h1>{{ item.name }}</h1>
+                <h2>{{ item.module }}</h2>
+                <p>{{ item.format }}</p>
+              </div>
             </li>
           </ul>
         </div>
@@ -137,26 +109,26 @@
 
   let PK={
       PK1:[
-        {module: "PKZ1-005", name: "3D定型枕", format: "没有收录", img:'../../static/IMG_3382.jpg'},
-        {module: "PKZ1-006", name: "竹炭多功能枕", format: "没有收录", img:'../../static/IMG_3382.jpg'},
-        {module: "PKZ1-009", name: "记忆枕", format: "没有收录",img:'../../static/IMG_3382.jpg'}
+        {module: "PKZ1-005", name: "3D定型枕", format: "暂时没有收录", img:'../../static/IMG_3382.jpg'},
+        {module: "PKZ1-006", name: "竹炭多功能枕", format: "暂时没有收录", img:'../../static/IMG_3382.jpg'},
+        {module: "PKZ1-009", name: "记忆枕", format: "暂时没有收录",img:'../../static/IMG_3382.jpg'}
         ],
       PK2:[
-        {module: "PKZ1-007", name: "3D蝶形成长枕", format: "没有收录",img:'../../static/IMG_3382.jpg'},
-        {module: "PKZ1-008", name: "竹炭助眠枕", format: "没有收录",img:'../../static/IMG_3382.jpg'},
-        {module: "PKZ1-010", name: "记忆枕", format: "没有收录",img:'../../static/IMG_3382.jpg'}
+        {module: "PKZ1-007", name: "3D蝶形成长枕", format: "暂时没有收录",img:'../../static/IMG_3382.jpg'},
+        {module: "PKZ1-008", name: "竹炭助眠枕", format: "暂时没有收录",img:'../../static/IMG_3382.jpg'},
+        {module: "PKZ1-010", name: "记忆枕", format: "暂时没有收录",img:'../../static/IMG_3382.jpg'}
         ],
       PK3:[
-        {module: "PKZ1-011", name: "温感按摩枕", format: "没有收录",img:'../../static/IMG_3382.jpg'},
-        {module: "PKZ1-012", name: "竹炭按摩枕", format: "没有收录",img:'../../static/IMG_3382.jpg'}
+        {module: "PKZ1-011", name: "温感按摩枕", format: "暂时没有收录",img:'../../static/IMG_3382.jpg'},
+        {module: "PKZ1-012", name: "竹炭按摩枕", format: "暂时没有收录",img:'../../static/IMG_3382.jpg'}
         ],
       PK4:[
-        {module: "PKZ1-013", name: "记忆枕", format: "没有收录",img:'../../static/IMG_3382.jpg'},
-        {module: "PKZ1-015", name: "蝶形护颈枕", format: "没有收录",img:'../../static/IMG_3382.jpg'}
+        {module: "PKZ1-013", name: "记忆枕", format: "暂时没有收录",img:'../../static/IMG_3382.jpg'},
+        {module: "PKZ1-015", name: "蝶形护颈枕", format: "暂时没有收录",img:'../../static/IMG_3382.jpg'}
         ],
       PK5:[
-        {module: "PKZ1-016", name: "3D可调节枕", format: "没有收录",img:'../../static/IMG_3382.jpg'},
-        {module: "PKZ1-017", name: "竹炭助眠枕", format: "没有收录",img:'../../static/IMG_3382.jpg'}
+        {module: "PKZ1-016", name: "3D可调节枕", format: "暂时没有收录",img:'../../static/IMG_3382.jpg'},
+        {module: "PKZ1-017", name: "竹炭助眠枕", format: "暂时没有收录",img:'../../static/IMG_3382.jpg'}
         ],
     };
   let MK={
@@ -280,13 +252,13 @@
     },
     methods:{
       onReady: function(instance) {
-        console.log('这里写也行')
+        //console.log('这里写也行')
       },
       back: function () {
         this.$router.push({ name: 'part1'});
       },
       onClick: function (event, instance, echarts) {
-        console.log(event.color);
+        //console.log(event.color);
       }
     },
     mounted: function () {
@@ -315,8 +287,35 @@
         //游标值:
         this.stable.left = valueRanges(val)+'%';
 
-        //年龄判断
-        console.log(PK);
+        //年龄判断床垫
+        let _this = this;
+        function mShow(age) {
+          if(age<=3){
+            _this.mattress = MK.MK1
+          }else if(age>3 && age<=6){
+            _this.mattress = MK.MK2
+          }else if(age>6 && age<=12){
+            _this.mattress = MK.MK3
+          }else if(age>12 && age<=18){
+            _this.mattress = MK.MK4
+          }
+        }
+        mShow(_this.userinfo.age);
+        //年龄判断枕头
+        function pShow(age) {
+          if(age<=1){
+            _this.pillow = PK.PK1
+          }else if(age>1 && age<=3){
+            _this.pillow = PK.PK2
+          }else if(age>3 && age<=6){
+            _this.pillow = PK.PK3
+          }else if(age>6 && age<=12){
+            _this.pillow = PK.PK4
+          }else{
+            _this.pillow = PK.PK5
+          }
+        }
+        pShow(_this.userinfo.age);
       })
     }
   }
@@ -473,7 +472,7 @@
             img{
               display: inline-block;
               vertical-align: top;
-              width: 400px;
+              width: 380px;
               height: 260px;
               border-bottom-left-radius: 6px;
               border-top-left-radius: 6px;
@@ -481,9 +480,13 @@
             >div{
               display: inline-block;
               vertical-align: top;
+              width: 260px;
               margin-top: 30px;
               margin-left: 20px;
               h1{
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
                 font-weight: bold;
                 font-size: 32px;
                 color: rgb(46,59,83);

@@ -28,7 +28,9 @@
           <div class="choseSexy">
             <ul>
               <li v-for="(item, index) in sexImg" @click="choseSex(index)"
-                  :class="{circle: index === currentSex}"></li>
+                  :class="{circle: index === currentSex}">
+                <img :src="bgImg" alt="" v-show="index===currentSex">
+              </li>
             </ul>
           </div>
         </li>
@@ -46,7 +48,7 @@
       </ul>
 
       <div class="people">
-        <img src="../../static/bigBoy.png" alt="">
+        <img :src="bigImg" alt="" :style="changeImg">
       </div>
 
       <div class="button">
@@ -72,11 +74,16 @@
         currentSex: '',
         currentItem: '',
         active: false,
-        ageRange: [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18],
+        bgImg:'',
         sexImg:['../../static/boy2.png', '../../static/girl2.png'],
-        activeImg: ['../../static/boy.png','../../static/girl.png'],
+        ageRange: [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18],
         swiperOption: {
           slidesPerView : 7.1,
+        },
+        bigImg:'',
+        changeImg:{
+          width:"auto",
+          height:''
         }
       }
     },
@@ -88,7 +95,7 @@
     mounted() {
       // current swiper instance
       // 然后你就可以使用当前上下文内的swiper对象去做你想做的事了
-      console.log('this is current swiper instance object', this.swiper)
+      console.log('this is current swiper instance object', this.swiper);
       this.swiper.slideTo(0, 1000, false)
     },
     updated: function () {
@@ -105,22 +112,27 @@
       },
       choseSex: function (index) {
         this.currentSex = index;
+        if(index === 0){
+          this.sex = '男';
+          this.bgImg = '../../static/boy.png';
+          this.bigImg = '../../static/bigBoy.png';
+        }else {
+          this.sex = '女';
+          this.bgImg = '../../static/girl.png';
+          this.bigImg = '../../static/bigGirl.png';
+        }
       },
       choseIt: function (index) {
         this.currentItem = index;
         this.age = this.currentItem;
+        this.changeImg.height = (200+index*13.6)/75+'rem'
       },
-      male:function () {
-
-      },
-      female:function () {
-
-      }
     }
   }
 </script>
 
 <style lang="less" scoped>
+
   .part1{
     position: absolute;
     top: 0;
@@ -139,7 +151,7 @@
         width: 100%;
       }
       >h1{
-        margin-top: 228px;
+        margin-top: 138px;
         margin-left: 30px;
         font-size: 60px;
         font-weight: bold;
@@ -173,6 +185,7 @@
             background: #fff;
             border-radius: 8px;
             input{
+              width: 400px;
               padding-left: 20px;
               font-size: 32px;
               border: none;
@@ -194,16 +207,23 @@
                 height: 80px;
                 border-radius: 40px;
                 text-align: center;
+                img{
+                  width: auto;
+                  height: 60px;
+                  margin-top: 8px;
+                }
               }
               li:nth-of-type(1){
-                background: url("../../static/boy2.png")no-repeat center;
-                background-size: auto 60px;
-              }
+                  background: url("../../static/boy2.png")no-repeat center;
+                  background-size: auto 60px;
+                }
               li:nth-of-type(2){
                 background: url("../../static/girl2.png")no-repeat center;
                 background-size: auto 60px;
               }
               .circle{
+                width: 128px;
+                height: 76px;
                 border: 2px solid rgb(255,0,115);
               }
             }
@@ -234,11 +254,21 @@
         }
       }
       .people{
+        position: relative;
+        height: 445px;
         margin-top: 40px;
         text-align: center;
         img{
+          display: block;
+          vertical-align: middle;
+          position: absolute;
+          top: 0;
+          right: 0;
+          bottom: 0;
+          left: 0;
           width: auto;
-          height: 445px;
+          height: 200px;
+          margin: auto;
         }
       }
       .button{
