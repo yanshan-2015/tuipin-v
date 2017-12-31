@@ -4,7 +4,7 @@
       <div class="topContain">
         <h1>智睡小报</h1>
         <div class="word">
-          <p>亲爱的 {{userinfo.name}} 小朋友：</p>
+          <p>亲爱的 {{userInfo.name}} 小朋友：</p>
           <p>我们都觉得你表现非常棒，作为奖</p>
           <p>励，告诉你一些关于你的小秘密。</p>
         </div>
@@ -15,8 +15,8 @@
       <div class="simpleInfo">
         <img src="../../static/boy3.png" alt="">
         <div class="word">
-          <h1>{{userinfo.name}}</h1>
-          <h2>{{userinfo.age}}岁</h2>
+          <h1>{{userInfo.name}}</h1>
+          <h2>{{userInfo.age}}岁</h2>
           <p>测试日期：{{time}}</p>
         </div>
       </div>
@@ -40,7 +40,7 @@
         <img src="../../static/dashboard.png" alt="">
         <div id="BMI">
           <h1>您的体质指数为：</h1>
-          <h2>{{userinfo.BMI}}</h2>
+          <h2>{{userInfo.BMI}}</h2>
           <div class="sort">
             <span>过轻</span>
             <span>正常</span>
@@ -59,7 +59,7 @@
         <div class="product">
           <ul>
             <li v-for="item in mattress">
-              <img :src="item.img" alt="">
+              <img :src="item.image" alt="">
               <div class="describe">
                 <h1>{{ item.name }}</h1>
                 <h2>{{ item.module }}</h2>
@@ -71,10 +71,10 @@
       </div>
 
       <ul class="param">
-        <li><h1>{{userinfo.touwei}}</h1><p>头围(cm)</p></li>
-        <li><h1>{{userinfo.jingchang}}</h1><p>颈长(cm)</p></li>
-        <li><h1>{{userinfo.jingkuan}}</h1><p>颈宽(cm)</p></li>
-        <li><h1>{{userinfo.jiankuan}}</h1><p>肩宽(cm)</p></li>
+        <li v-for="item in userInfo.cm">
+          <h1>{{ item.name }}</h1>
+          <p>{{ item.unit }}</p>
+        </li>
       </ul>
 
       <div class="pillow">
@@ -84,7 +84,7 @@
         <div class="product">
           <ul>
             <li v-for="item in pillow">
-              <img :src="item.img" alt="">
+              <img :src="item.image" alt="">
               <div class="describe">
                 <h1>{{ item.name }}</h1>
                 <h2>{{ item.module }}</h2>
@@ -106,66 +106,25 @@
 <script type="text/babel">
   import IEcharts from 'vue-echarts-v3/src/full.js'
   import { BMIFun, valueRanges } from '../js/components/BMI-index-color'
+  import mattressImg from '../../static/IMG_2305.jpg'
+  import pillowImg from '../../static/IMG_3382.jpg'
+  import { devPath, proPath} from '../js/path'
 
-  let PK={
-      PK1:[
-        {module: "PKZ1-005", name: "3D定型枕", format: "暂时没有收录", img:'../../static/IMG_3382.jpg'},
-        {module: "PKZ1-006", name: "竹炭多功能枕", format: "暂时没有收录", img:'../../static/IMG_3382.jpg'},
-        {module: "PKZ1-009", name: "记忆枕", format: "暂时没有收录",img:'../../static/IMG_3382.jpg'}
-        ],
-      PK2:[
-        {module: "PKZ1-007", name: "3D蝶形成长枕", format: "暂时没有收录",img:'../../static/IMG_3382.jpg'},
-        {module: "PKZ1-008", name: "竹炭助眠枕", format: "暂时没有收录",img:'../../static/IMG_3382.jpg'},
-        {module: "PKZ1-010", name: "记忆枕", format: "暂时没有收录",img:'../../static/IMG_3382.jpg'}
-        ],
-      PK3:[
-        {module: "PKZ1-011", name: "温感按摩枕", format: "暂时没有收录",img:'../../static/IMG_3382.jpg'},
-        {module: "PKZ1-012", name: "竹炭按摩枕", format: "暂时没有收录",img:'../../static/IMG_3382.jpg'}
-        ],
-      PK4:[
-        {module: "PKZ1-013", name: "记忆枕", format: "暂时没有收录",img:'../../static/IMG_3382.jpg'},
-        {module: "PKZ1-015", name: "蝶形护颈枕", format: "暂时没有收录",img:'../../static/IMG_3382.jpg'}
-        ],
-      PK5:[
-        {module: "PKZ1-016", name: "3D可调节枕", format: "暂时没有收录",img:'../../static/IMG_3382.jpg'},
-        {module: "PKZ1-017", name: "竹炭助眠枕", format: "暂时没有收录",img:'../../static/IMG_3382.jpg'}
-        ],
-    };
-  let MK={
-      MK1:[
-        {module: "MKB1-021A", name: "小独立筒弹簧床垫", format: "12cm 小独立筒",img:'../../static/IMG_2305.jpg'},
-        {module: "MKB1-007", name: "独立筒弹簧床垫", format: "18cm 双层独立筒",img:'../../static/IMG_2305.jpg'},
-        {module: "MKB1-003A", name: "3D棉床垫", format: "17cm 全3D",img:'../../static/IMG_2305.jpg'}
-        ],
-      MK2:[
-        {module: "MKA1-052A", name: "独立筒弹簧床垫", format: "18cm 独立筒",img:'../../static/IMG_2305.jpg'},
-        {module: "MKB1-063", name: "维密天使", format: "18cm 三区五段",img:'../../static/IMG_2305.jpg'},
-        {module: "MKB1-007", name: "独立筒弹簧床垫", format: "18cm 双层独立筒",img:'../../static/IMG_2305.jpg'}
-        ],
-      MK3:[
-        {module: "MKC1-059", name: "五段式独立筒弹簧床垫", format: "21cm 五段式独立筒",img:'../../static/IMG_2305.jpg'},
-        {module: "MKC1-061", name: "蓝精灵", format: "17cm 三区五段",img:'../../static/IMG_2305.jpg'},
-        {module: "MKB1-006B", name: "迷你独立筒弹簧床垫", format: "22cm 迷你独立筒",img:'../../static/IMG_2305.jpg'}
-        ],
-      MK4:[
-        {module: "MKA1-011", name: "标准弹簧床垫", format: "16cm 整网弹簧",img:'../../static/IMG_2305.jpg'},
-        {module: "MKC1-062", name: "水立方", format: "16cm 三区五段",img:'../../static/IMG_2305.jpg'},
-        {module: "MKC1-060", name: "五段式独立筒弹簧床垫", format: "20cm 五段式独立筒",img:'../../static/IMG_2305.jpg'}
-        ]
-    };
   export default {
     name: '',
     components: { IEcharts },
     data() {
         return {
-          userinfo:{
+          userInfo:{
             name: '',
             age: '',
             BMI: '11',
-            touwei: '0',
-            jingchang: '0',
-            jingkuan: '0',
-            jiankuan: '0'
+            cm: [
+              {name: '', unit: '头围（cm）'},
+              {name: '', unit: '颈长（cm）'},
+              {name: '', unit: '颈宽（cm）'},
+              {name: '', unit: '肩宽（cm）'}
+            ]　
           },
           time:'',
           loading: false,
@@ -269,53 +228,55 @@
         let thisMon = times.getMonth()+1;
         let thisDate = times.getDate();
         this.time = thisYear+'年'+thisMon+'月'+thisDate+'日';
-
         //个人信息：
-        this.userinfo.name = localStorage.name || '某某';
-        this.userinfo.age = localStorage.age || 0;
-        this.userinfo.touwei = localStorage.touwei || 0;
-        this.userinfo.jingchang = localStorage.jingchang || 0;
-        this.userinfo.jingkuan = localStorage.jingkuan || 0;
-        this.userinfo.jiankuan = localStorage.jiankuan || 0;
+        this.userInfo.name = localStorage.name || '某某';
+        this.userInfo.age = localStorage.age || 0;
+        this.userInfo.cm[0].name = localStorage.touwei || 0;
+        this.userInfo.cm[1].name = localStorage.jingchang || 0;
+        this.userInfo.cm[2].name = localStorage.jingkuan || 0;
+        this.userInfo.cm[3].name = localStorage.jiankuan || 0;
+        //拉回身高、体重标准区间值
+        this.$http.get(devPath+'/reference_check.jsp',
+          {params:
+            {
+              sex: localStorage.sex,
+              age: this.userInfo.age
+            }
+          }).then((response) => {
+            let obj = response.body;
+            if(obj.status === 'true'){
+              this.bar1.series[0].data.splice(0,1,obj.reference[0].height);
+              this.bar1.series[0].data.splice(2,1,obj.reference[0].height2);
+              this.bar2.series[0].data.splice(0,1,obj.reference[0].weight);
+              this.bar2.series[0].data.splice(2,1,obj.reference[0].weight2);
+            }
+          }, (response) => {
+            console.log(response)
+        });
         //身高：
         this.bar1.series[0].data.splice(1,1,localStorage.height||100);
         //体重：
         this.bar2.series[0].data.splice(1,1,localStorage.weight||50);
         //IBM值:
         let val = BMIFun(this.bar2.series[0].data[1],this.bar1.series[0].data[1]);
-        this.userinfo.BMI = val;
+        this.userInfo.BMI = val;
         //游标值:
         this.stable.left = valueRanges(val)+'%';
-
-        //年龄判断床垫
-        let _this = this;
-        function mShow(age) {
-          if(age<=3){
-            _this.mattress = MK.MK1
-          }else if(age>3 && age<=6){
-            _this.mattress = MK.MK2
-          }else if(age>6 && age<=12){
-            _this.mattress = MK.MK3
-          }else if(age>12 && age<=18){
-            _this.mattress = MK.MK4
-          }
-        }
-        mShow(_this.userinfo.age);
-        //年龄判断枕头
-        function pShow(age) {
-          if(age<=1){
-            _this.pillow = PK.PK1
-          }else if(age>1 && age<=3){
-            _this.pillow = PK.PK2
-          }else if(age>3 && age<=6){
-            _this.pillow = PK.PK3
-          }else if(age>6 && age<=12){
-            _this.pillow = PK.PK4
-          }else{
-            _this.pillow = PK.PK5
-          }
-        }
-        pShow(_this.userinfo.age);
+        //年龄判断床垫和枕头
+        this.$http.get(devPath+'/product_check.jsp',
+          {params:
+            {
+              age: this.userInfo.age || 0
+            }
+          }).then((response) => {
+            let obj = response.body;
+            if(obj.status === 'true'){
+              this.mattress = obj.product;
+              this.pillow = obj.product;
+            }
+          }, (response) => {
+            console.log(response)
+        });
       })
     }
   }

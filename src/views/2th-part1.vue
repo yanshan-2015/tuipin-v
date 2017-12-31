@@ -63,6 +63,11 @@
   import 'swiper/dist/css/swiper.css'
   import { swiper, swiperSlide } from 'vue-awesome-swiper'
 
+  import boy from '../../static/boy.png'
+  import bigBoy from '../../static/bigBoy.png'
+  import girl from '../../static/girl.png'
+  import bigGirl from '../../static/bigGirl.png'
+
   export default {
     name: '',
     components: { MyHead, swiper, swiperSlide},
@@ -105,7 +110,7 @@
     },
     methods:{
       back:function () {
-        this.$router.back();
+        this.$router.push({ name: 'index'});
       },
       go:function () {
         this.$router.push({ name: 'part2'})
@@ -113,13 +118,13 @@
       choseSex: function (index) {
         this.currentSex = index;
         if(index === 0){
-          this.sex = '男';
-          this.bgImg = '../../static/boy.png';
-          this.bigImg = '../../static/bigBoy.png';
+          this.sex = '0';
+          this.bgImg = boy;
+          this.bigImg = bigBoy;
         }else {
-          this.sex = '女';
-          this.bgImg = '../../static/girl.png';
-          this.bigImg = '../../static/bigGirl.png';
+          this.sex = '1';
+          this.bgImg = girl;
+          this.bigImg = bigGirl;
         }
       },
       choseIt: function (index) {

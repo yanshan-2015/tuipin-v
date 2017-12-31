@@ -7,11 +7,11 @@
     <h1>欢迎使用</h1>
     <ul>
       <li>
-        <input type="tel" maxlength="11" placeholder="手机号">
-        <img src="../../static/iconfont-cha.png" alt="">
+        <input type="tel" maxlength="11" placeholder="手机号" v-model="phone" ref="phoneVal" @change="phoneChange">
+        <img src="../../static/iconfont-cha.png" alt="" @click="del">
       </li>
       <li>
-        <input type="password" placeholder="密码">
+        <input type="password" placeholder="密码" v-model="password" ref="passVal" @change="passChange">
       </li>
     </ul>
 
@@ -28,15 +28,74 @@
 </template>
 
 <script>
+  import {devPath} from '../js/path'
     export default {
       name: '',
       components: {},
       data() {
-          return {}
+          return {
+            phone: '',
+            password: ''
+          }
+      },
+      mounted:function () {
+        this.phone = localStorage.phone;
+        this.password = localStorage.password;
       },
       methods:{
+        phoneValue:function () {
+          return this.$refs.phoneVal.value
+        },
+        passValue: function () {
+          return this.$refs.passVal.value
+        },
         login: function () {
-          this.$router.push({path: "part1"})
+          if(this.phoneValue() === ''){
+            alert('电话不能为空');
+            return false
+          }
+          if(this.passValue() === ''){
+            alert('密码不能为空');
+            return false
+          }
+          //登录校验
+          this.$http.get(devPath+'/user_check.jsp',
+          {params:{
+              user: this.phoneValue(),
+              pwd: this.passValue
+            }
+          }).then((response) => {
+            if(response.body.status === 'false'){
+              alert('账户或密码错误!');
+              return false
+            }else {
+              this.$router.push({ name: 'part1'})
+            }
+          },(response) => {
+            console.log(response)
+          })
+        },
+        del: function () {
+          this.phone = '';
+          this.password = '';
+          localStorage.phone = '';
+          localStorage.password = ''
+        },
+        phoneChange: function () {
+          let phoneReg = /^1[34578]\d{9}$/; //电话正则
+          if(phoneReg.test(this.phoneValue()) === false){
+            alert('请输入正确的电话号码');
+            this.phone = '';
+            this.password = '';
+            localStorage.phone = '';
+            localStorage.password = '';
+            return false;
+          }else{
+            localStorage.phone = this.phone;
+          }
+        },
+        passChange: function () {
+          localStorage.password = this.password;
         }
       }
     }

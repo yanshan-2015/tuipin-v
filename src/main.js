@@ -3,11 +3,15 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+import VueResource  from 'vue-resource'
+
+
 import Vuex from 'vuex'
 import VueAwesomeSwiper from 'vue-awesome-swiper'
 
 Vue.use(Vuex);
 Vue.use(VueAwesomeSwiper);
+Vue.use(VueResource );
 
 //add
 import { flexible } from './js/lib/properScreen.js'

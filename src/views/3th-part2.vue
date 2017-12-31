@@ -68,12 +68,6 @@
       methods:{
         go: function () {
           this.$router.push({ name: 'part3'});
-          let  _this= this;
-          //设置随机时间
-          let randomNum = (1000 + Math.random()*3000).toFixed(0);
-          setTimeout(function () {
-            _this.$router.push({ name: 'part4'})
-          },randomNum)
         },
         back:function () {
           this.$router.back();
