@@ -59,7 +59,7 @@
         <div class="product">
           <ul>
             <li v-for="item in mattress">
-              <img :src="item.image" alt="">
+              <img :src="'http://10.12.0.53:8900/app/util/ImgServerLet?img='+item.image" alt="">
               <div class="describe">
                 <h1>{{ item.name }}</h1>
                 <h2>{{ item.module }}</h2>
@@ -84,7 +84,7 @@
         <div class="product">
           <ul>
             <li v-for="item in pillow">
-              <img :src="item.image" alt="">
+              <img :src="'http://10.12.0.53:8900/app/util/ImgServerLet?img='+item.image" alt="">
               <div class="describe">
                 <h1>{{ item.name }}</h1>
                 <h2>{{ item.module }}</h2>
@@ -272,7 +272,7 @@
             let obj = response.body;
             if(obj.status === 'true'){
               this.mattress = obj.product;
-              this.pillow = obj.product;
+              this.pillow = obj.product1;
             }
           }, (response) => {
             console.log(response)
